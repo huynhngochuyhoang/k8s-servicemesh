@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: check-notification-virtual-service
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - check-notification-gateway
+  http:
+    - route:
+      - destination:
+          port:
+            number: 8080
+          host: check-notification-service
