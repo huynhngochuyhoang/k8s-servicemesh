@@ -4,9 +4,9 @@ metadata:
   name: notification-destination-rule
 spec:
   host: notification-service
-  trafficPolicy:
-    loadBalancer:
-      simple: ROUND_ROBIN
+  # trafficPolicy:
+  #   loadBalancer:
+  #     simple: ROUND_ROBIN
   subsets:
   - name: v1
     labels:

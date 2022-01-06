@@ -1,6 +1,6 @@
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  name: check-notification-destination-rule
-spec:
-  host: check-notification-service
+# apiVersion: networking.istio.io/v1alpha3
+# kind: DestinationRule
+# metadata:
+#   name: check-notification-destination-rule
+# spec:
+#   host: check-notification-service
