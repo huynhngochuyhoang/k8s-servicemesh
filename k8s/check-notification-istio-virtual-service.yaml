@@ -13,3 +13,8 @@ spec:
           port:
             number: 8080
           host: check-notification-service
+      corsPolicy:
+        allowOrigins:
+        - exact: http://localhost
+        allowMethods:
+          - GET
