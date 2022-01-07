@@ -4,6 +4,7 @@
 
 ## Start the demo
 ```
+$ kubectl create namespace notification
 $ kubectl apply -f k8s/
 ```
 ## Verify deploy
