@@ -2,6 +2,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: notification-destination-rule
+  namespace: notification
 spec:
   host: notification-service
   # trafficPolicy:

@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: notification-service-v1
+  namespace: notification
 spec:
   replicas: 1
   selector:
@@ -27,6 +28,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: notification-service-v2
+  namespace: notification
 spec:
   replicas: 1
   selector:
