@@ -14,10 +14,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get(`${environment.apiUrl}/api/checkNotification/refresh`,
-      {responseType: "text"})
-      .subscribe(notification => {
-        this.notification = notification
-      })
+    setInterval(() => {
+      this.http.get(`${environment.apiUrl}/api/checkNotification/refresh`,
+        {responseType: "text"})
+        .subscribe(notification => {
+          this.notification = notification
+        })
+    }, 5000)
   }
 }
