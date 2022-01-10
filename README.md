@@ -1,6 +1,6 @@
 # k8s-servicemesh
 
-> **_NOTE:_**  In this repo, i'm running kubernetes environment on Docker Desktop, and I changed the istio-ingressgateway to 81 to avoid conflict ingress-nginx-controller port. If you are using Minikube, then you have to change the port in ```check-notification-istio-gateway.yaml``` and the allowOrigin from ```check-notificaition-istio-virtual-service.yaml``` to your Minikube IP, then change the apiUrl value to your external-ip in ```environment.prod.ts``` and rebuild the client docker image.
+> **_NOTE:_**  In this repo, i'm running kubernetes environment on Docker Desktop, and I've created istio-ingressgateway listen on port 82. If you are using Minikube, then you have to change the allowOrigin from ```check-notificaition-istio-virtual-service.yaml``` to your Minikube IP, then change the apiUrl value to your external-ip in ```environment.prod.ts``` and rebuild the client docker image.
 
 ## Start the demo
 ```

@@ -5,10 +5,10 @@ metadata:
   namespace: notification
 spec:
   selector:
-    istio: ingressgateway # use Istio default gateway implementation
+    istio: ingressgateway-notification # use custom Istio gateway implementation
   servers:
   - port:
-      number: 81
+      number: 82
       name: http
       protocol: HTTP
     hosts:
