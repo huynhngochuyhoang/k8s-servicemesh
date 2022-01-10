@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Random;
+
 @RestController
 @RequestMapping("/api/checkNotification")
 public class CheckNotificationController {
@@ -27,5 +29,10 @@ public class CheckNotificationController {
         String response = restTemplate.getForObject("http://" + notificationService + ":8081/api/notification/newest", String.class);
         logger.info("Received new notification");
         return response;
+    }
+
+    @GetMapping("/show")
+    public String show() {
+        return "You have " + new Random().nextInt(10) + " unread notification";
     }
 }

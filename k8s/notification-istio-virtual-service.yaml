@@ -16,3 +16,8 @@ spec:
           host: notification-service
           subset: v2
         weight: 60
+      fault:
+        delay:
+          percentage:
+            value: 30
+          fixedDelay: 5s
