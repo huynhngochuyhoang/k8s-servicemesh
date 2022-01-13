@@ -24,6 +24,22 @@ spec:
         - exact: http://localhost
         allowMethods:
           - GET
+    - name: "check-notification-create-notification-api"
+      match:
+        - uri:
+            exact: "/api/checkNotification/create"
+      route:
+        - destination:
+            host: check-notification-service
+            port:
+              number: 8080
+      corsPolicy:
+        allowOrigins:
+        - exact: http://localhost
+        allowMethods:
+          - POST
+        allowHeaders:
+          - "Content-Type"
     - name: "check-notification-show-unread-notification-api"
       match:
         - uri:

@@ -1,6 +1,18 @@
 <h1>Notification Check</h1>
+<button (click)="check()">Check</button>
 <p> {{ notification }} </p>
 <br/>
+<hr>
 <h2>Unread notification</h2>
 <button (click)="show()">Show</button>
 <p> {{ unreadNotification }}</p>
+<br/>
+<hr>
+<h1>Create new notification</h1>
+<input type="number" [(ngModel)]="id" placeholder="Id">
+<br/>
+<input type="text" [(ngModel)]="description" placeholder="Description">
+<button (click)="submit()">Create</button>
+<li>
+  <ul *ngFor="let noti of listNoti; index as i"> {{ i + 1 }} --- {{ noti }}</ul>
+</li>

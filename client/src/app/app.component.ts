@@ -1,27 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../environments/environment";
+import {Noti} from "./Notification";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   notification: string = '';
   unreadNotification: string = '';
+  id!: number
+  description!: string
+  listNoti: string[] = []
 
   constructor(private http: HttpClient) {
-  }
-
-  ngOnInit(): void {
-    setInterval(() => {
-      this.http.get(`${environment.apiUrl}/api/checkNotification/refresh`,
-        {responseType: "text"})
-        .subscribe(notification => {
-          this.notification = notification
-        })
-    }, 5000)
   }
 
   show() {
@@ -30,5 +24,21 @@ export class AppComponent implements OnInit {
           this.unreadNotification = response
         }
       )
+  }
+
+  submit() {
+    let noti: Noti = {id: this.id, description: this.description}
+    this.http.post(`${environment.apiUrl}/api/checkNotification/create`, noti, {responseType: "text"})
+      .subscribe(response => {
+        this.listNoti.push(response);
+      })
+  }
+
+  check() {
+    this.http.get(`${environment.apiUrl}/api/checkNotification/refresh`,
+      {responseType: "text"})
+      .subscribe(notification => {
+        this.notification = notification
+      })
   }
 }
