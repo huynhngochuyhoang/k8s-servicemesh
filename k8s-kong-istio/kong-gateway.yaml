@@ -1,0 +1,65 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kong-ingress
+  namespace: notification
+  # annotations:
+    # konghq.com/plugins: kong-cors
+    # konghq.com/strip-path: "true"
+spec:
+  ingressClassName: kong
+  rules:
+  - http:
+      paths:
+      - path: "/api/checkNotification/refresh"
+        pathType: Prefix
+        backend:
+          service:
+            name: check-notification-service
+            port:
+              number: 8080
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: kong-cors
+  namespace: notification
+  annotations:
+    kubernetes.io/ingress.class: kong
+  labels:
+    global: 'true'
+config: 
+  origins:
+  - http://localhost
+  methods:
+  - GET
+  - POST
+  headers:
+  - Accept
+  - Accept-Version
+  - Content-Length
+  - Content-MD5
+  - Content-Type
+  - Date
+  - X-Auth-Token
+  exposed_headers:
+  - X-Auth-Token
+  credentials: true
+  max_age: 3600
+  preflight_continue: false
+plugin: cors
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: global-rate-limit
+  namespace: notification
+  annotations:
+    kubernetes.io/ingress.class: kong
+  labels:
+    global: "true"
+config:
+  minute: 100
+  policy: local
+  # redis_host: redis
+plugin: rate-limiting
